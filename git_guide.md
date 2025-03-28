@@ -171,4 +171,103 @@ git push origin <현재 브랜치명>
 
 🚀 **이제 Git의 기본 개념부터 브랜치 관리, Merge 충돌 해결까지 완벽하게 정리되었습니다!** 😊  
 
+# 추가로
+
+## 📌 Git Repository 변경 방법
+
+가끔 원격 저장소(GitHub 등)의 주소가 변경되거나, 다른 저장소로 이전해야 하는 경우가 있습니다.  
+이럴 때는 로컬 프로젝트의 원격 저장소 설정을 새 주소로 바꿔야 합니다.
+
+---
+
+### ✅ 주요 개념
+
+| 용어 | 설명 |
+|------|------|
+| 원격 저장소(Remote) | GitHub 등 서버에 존재하는 저장소 |
+| origin | 기본 원격 저장소의 이름 (보통 `origin`으로 사용됨) |
+| `git remote` | 원격 저장소 설정을 확인하거나 변경할 수 있는 Git 명령어 |
+
+---
+
+### 📌 원격 저장소 변경 방법
+
+#### 1️⃣ 현재 원격 저장소 확인
+```bash
+git remote -v
+```
+
+🔍 출력 예시:
+```
+origin  https://github.com/old-user/old-repo.git (fetch)
+origin  https://github.com/old-user/old-repo.git (push)
+```
+
+---
+
+#### 2️⃣ 원격 저장소 주소 변경
+```bash
+git remote set-url origin https://github.com/new-user/new-repo.git
+```
+
+✔ 위 명령어는 기존 저장소 주소를 새로운 저장소로 변경합니다.  
+✔ 또는 아래와 같이 기존 원격을 삭제하고 새로 추가할 수도 있습니다:
+
+```bash
+git remote remove origin
+git remote add origin https://github.com/new-user/new-repo.git
+```
+
+---
+
+#### 3️⃣ 변경된 저장소 주소 확인
+```bash
+git remote -v
+```
+
+🔍 출력 예시:
+```
+origin  https://github.com/new-user/new-repo.git (fetch)
+origin  https://github.com/new-user/new-repo.git (push)
+```
+
+✅ 새 저장소 주소로 잘 변경되었는지 확인합니다.
+
+---
+
+#### 4️⃣ 새 저장소로 푸시
+```bash
+git push -u origin main
+```
+
+> ⚠️ 새 저장소가 비어 있어야 합니다.  
+> 이미 브랜치가 존재하는 경우 충돌이 날 수 있으며, `git pull` 또는 `--force` 푸시가 필요할 수 있습니다.
+
+---
+
+### 📌 원격 저장소 변경 시 유의사항
+
+| 상황 | 설명 |
+|------|------|
+| 새로운 저장소가 Private일 경우 | GitHub 토큰 또는 인증이 필요함 |
+| GitHub에 브랜치가 이미 있는 경우 | 강제 푸시(`--force`)가 필요할 수 있음 |
+| 협업 중인 저장소인 경우 | 브랜치 충돌 방지를 위해 팀원과 공유 후 변경 권장 |
+
+---
+
+### 📌 변경 요약
+
+| 명령어 | 설명 |
+|--------|------|
+| `git remote -v` | 현재 원격 저장소 주소 확인 |
+| `git remote set-url origin <새 URL>` | 기존 저장소 주소를 새 주소로 변경 |
+| `git remote remove origin` → `add` | 원격 저장소를 아예 새로 설정 |
+| `git push -u origin <브랜치명>` | 변경된 저장소에 로컬 브랜치 푸시 |
+
+---
+
+✅ 이제 기존 프로젝트의 원격 저장소 주소가 바뀌었을 때, 어떻게 연결을 새로 설정하는지 알게 되었습니다.  
+✔ 이 작업은 저장소 이전이나 조직 이동 등 다양한 상황에서 유용하게 쓰입니다!
+
+
 
